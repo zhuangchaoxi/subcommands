@@ -9,7 +9,7 @@
 <pre>pip install subcommands</pre>
 
 ## 使用方法
-###使用可以参考testSubCommands.py
+### 使用可以参考testSubCommands.py
 <pre>
 #encoding: u8
 from subcommands import BaseCommands
@@ -20,4 +20,4 @@ for rs in results:
 	print rs
 </pre>
 ## 注意
-#### SubCommands有两个参数，第一个是要执行的命令，第二个参数是超时时间，单位秒，可以不加，默认值是1小时。
+#### SubCommands有两个参数，第一个是要执行的命令，第二个参数是超时时间，单位秒，可以不加，默认值是1小时。上面的例子中可以尝试将SubCommand的第2个参数5改为50或去掉，看看是什么结果。
