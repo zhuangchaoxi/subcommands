@@ -17,4 +17,4 @@ commandObj.SubCommands("ifconfig; for i in {1..10};do echo $i && sleep 1;done", 
 commandObj.SubCommands("ifconfig; for i in {1..10};do echo $i && sleep 1;done") #也不会超时，默认超时时间1小时
 
 ## 注意
-#### command_run有两个参数，第一个是要执行的命令，第二个参数是超时时间，单位秒，可以不加，默认值是1小时。
+#### SubCommands有两个参数，第一个是要执行的命令，第二个参数是超时时间，单位秒，可以不加，默认值是1小时。
