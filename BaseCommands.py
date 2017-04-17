@@ -16,11 +16,15 @@ class BaseCommands(object):
 		self.SleepTime = .1
 		self.SEEK = 0
 		self.Last = ""
+		self.TimeOut = 3600
 
 
-	def SubCommands(self, command, timeout):
+	def SubCommands(self, command, timeout=None):
 		Condition = 1
-		deadline = time() + timeout
+		if timeout:
+			deadline = time() + timeout
+		else:
+			deadline = time() + self.TimeOut
 		process = subprocess.Popen(command, 
 									bufsize=self.bufsize,
 									stdout=self.tmpf, 
