@@ -11,6 +11,7 @@
 ## 使用方法
 
 from subcommands.subcommands import BaseCommands
+
 commandObj=BaseCommands()
 commandObj.SubCommands("ifconfig; for i in {1..10};do echo $i && sleep 1;done", 5)  #会返回超时
 commandObj.SubCommands("ifconfig; for i in {1..10};do echo $i && sleep 1;done", 60) #不会超时
