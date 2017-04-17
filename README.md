@@ -9,11 +9,11 @@
 #### pip install subcommands
 
 ## 使用方法
-` from subcommands.subcommands import BaseCommands
+{ {{from subcommands.subcommands import BaseCommands
 
 commandObj=BaseCommands()
 commandObj.SubCommands("ifconfig; for i in {1..10};do echo $i && sleep 1;done", 5)  #会返回超时
 commandObj.SubCommands("ifconfig; for i in {1..10};do echo $i && sleep 1;done", 60) #不会超时
-commandObj.SubCommands("ifconfig; for i in {1..10};do echo $i && sleep 1;done") #也不会超时，默认超时时间1小时 `
+commandObj.SubCommands("ifconfig; for i in {1..10};do echo $i && sleep 1;done") #也不会超时，默认超时时间1小时}}  }
 ## 注意
 #### SubCommands有两个参数，第一个是要执行的命令，第二个参数是超时时间，单位秒，可以不加，默认值是1小时。
