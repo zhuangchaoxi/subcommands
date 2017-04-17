@@ -9,7 +9,7 @@
 <pre>pip install subcommands</pre>
 
 ## 使用方法
-<pre>from subcommands.subcommands import BaseCommands
+<pre>from subcommands import BaseCommands
 
 commandObj=BaseCommands()
 commandObj.SubCommands("ifconfig; for i in {1..10};do echo $i && sleep 1;done", 5)  #会返回超时
