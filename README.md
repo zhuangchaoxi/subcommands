@@ -6,7 +6,7 @@
 
 ## 安装
 
-#### pip install subcommands
+<pre>pip install subcommands</pre>
 
 ## 使用方法
 <pre>from subcommands.subcommands import BaseCommands
