@@ -14,10 +14,10 @@
 #encoding: u8
 from subcommands import BaseCommands
 
-commandObj=BaseCommands()
-results = commandObj.SubCommands("ifconfig; for i in {1..10};do echo $i && sleep 1;done", 5)
+cobj = BaseCommands()
+results = cobj.SubCommands("ifconfig; for i in {1..10};do echo $i && sleep 1;done", 5)
 for rs in results:
-    print rs
+	print rs
 </pre>
 ## 注意
 #### SubCommands有两个参数，第一个是要执行的命令，第二个参数是超时时间，单位秒，可以不加，默认值是1小时。
