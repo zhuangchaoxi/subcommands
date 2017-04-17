@@ -26,11 +26,11 @@ class BaseCommands(object):
 		else:
 			deadline = time() + self.TimeOut
 		process = subprocess.Popen(command, 
-					   bufsize=self.bufsize,
-					   stdout=self.tmpf, 
-					   stderr=subprocess.STDOUT, 
-					   close_fds=True,
-					   shell=True)
+									bufsize=self.bufsize,
+									stdout=self.tmpf, 
+									stderr=subprocess.STDOUT, 
+									close_fds=True,
+									shell=True)
 		yield {"logging":"执行子进程PID: {pid}".format(pid=process.pid)}
 
 		while Condition:
@@ -47,7 +47,7 @@ class BaseCommands(object):
 			self.tmpf.seek(self.SEEK)
 			res = self.tmpf.read()
 			
-			if res not in self.results:
+			if res and res not in self.results:
 				if not self.results:
 					newres = res
 					yield {'execoutput':newres}
@@ -57,7 +57,14 @@ class BaseCommands(object):
 					newres = '\n'.join(res.split('\n')[llen-1:tlen])
 					yield {'execoutput':newres}
 				else:
-					newres = res.split("\n")[-2]
+					newres = res.split("\n")
+					if len(newres) == 1:
+						newres = newres[-1]
+					else:
+						if newres[-1]:
+							newres = newres[-1]
+						else:
+							newres = newres[-2]
 					yield {'execoutput':newres}
 				self.Last = newres
 				self.results.add(res)
@@ -72,7 +79,7 @@ class BaseCommands(object):
 				break
 
 
-	def command_run(self, command, timeout=None):
+	def command_run(self, command, timeout):
 		result = self.SubCommands(command, timeout)
 		for rs in result:
 			key = rs.keys()[0]
