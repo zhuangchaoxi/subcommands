@@ -26,11 +26,11 @@ class BaseCommands(object):
 		else:
 			deadline = time() + self.TimeOut
 		process = subprocess.Popen(command, 
-									bufsize=self.bufsize,
-									stdout=self.tmpf, 
-									stderr=subprocess.STDOUT, 
-									close_fds=True,
-									shell=True)
+					   bufsize=self.bufsize,
+					   stdout=self.tmpf, 
+					   stderr=subprocess.STDOUT, 
+					   close_fds=True,
+					   shell=True)
 		yield {"logging":"执行子进程PID: {pid}".format(pid=process.pid)}
 
 		while Condition:
