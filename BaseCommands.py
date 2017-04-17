@@ -72,7 +72,7 @@ class BaseCommands(object):
 				break
 
 
-	def command_run(self, command, timeout):
+	def command_run(self, command, timeout=None):
 		result = self.SubCommands(command, timeout)
 		for rs in result:
 			key = rs.keys()[0]
