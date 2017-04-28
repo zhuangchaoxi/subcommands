@@ -26,11 +26,11 @@ class BaseCommands(object):
 		else:
 			deadline = time() + self.TimeOut
 		process = subprocess.Popen(command, 
-					   bufsize=self.bufsize,
-					   stdout=self.tmpf, 
-					   stderr=subprocess.STDOUT, 
-					   close_fds=True,
-					   shell=True)
+									bufsize=self.bufsize,
+									stdout=self.tmpf, 
+									stderr=subprocess.STDOUT, 
+									close_fds=True,
+									shell=True)
 		yield {"logging":"执行子进程PID: {pid}".format(pid=process.pid)}
 
 		while Condition:
@@ -39,7 +39,7 @@ class BaseCommands(object):
 				self.lens = []
 			if time() > deadline:
 				process.terminate()
-				yield {'Last':self.Last}
+				yield {'Last':'exec command timeout.'}
 				yield {'return':('', 'exec command timeout.', -1)}
 				break
 			sleep(self.SleepTime)
@@ -79,4 +79,29 @@ class BaseCommands(object):
 				break
 
 
+	def command_run(self, command, timeout):
+		result = self.SubCommands(command, timeout)
+		for rs in result:
+			key = rs.keys()[0]
+			value = rs[key]
+			if key == 'logging':
+				print "logging: ", value
+			elif key == 'execoutput':
+				print "execoutput: ", value
+			elif key == 'Last':
+				print "Last: ", value
+			elif key == 'return':
+				print "return: ", value
+			
+
+
+
+
+def main():
+	exeobj = BaseCommands()
+	exeobj.command_run("echo -e 'aaa\nbbb\n' && for i in {1..10};do echo $i ;done;echo abcd ; echo haha 1 2 3", 15)
+
+
+if __name__ == '__main__':
+	main()
 
