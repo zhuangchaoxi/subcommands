@@ -16,6 +16,7 @@ class BaseCommands(object):
 		self.SleepTime = .1
 		self.SEEK = 0
 		self.Last = ""
+		self.ResultsLast = ""
 		self.TimeOut = 3600
 
 
@@ -36,7 +37,8 @@ class BaseCommands(object):
 		while Condition:
 			if len(self.lens) > 1000:
 				self.results = set()
-				self.lens = []
+				self.lens = self.lens[-1:]
+				self.results.add(self.ResultsLast)
 			if time() > deadline:
 				process.terminate()
 				yield {'Last':'exec command timeout.'}
@@ -67,6 +69,7 @@ class BaseCommands(object):
 							newres = newres[-2]
 					yield {'execoutput':newres}
 				self.Last = newres
+				self.ResultsLast = res
 				self.results.add(res)
 				self.lens.append(len(res.split("\n")))
 
